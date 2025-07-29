@@ -68,10 +68,11 @@ const login = async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: "1h" }
     );
-
     res.cookie("jwt", token, {
-      maxage: 3600000,
-      httponly: true,
+      maxAge: 3600000, // 1 hour
+      httpOnly: true,
+      secure: true,
+      sameSite: "None",
     });
 
     res.json({
